@@ -1,13 +1,21 @@
 import React from 'react';
-import {View, Button, Text} from 'react-native';
+import {View, Button, Text, StyleSheet} from 'react-native';
+import SettingCard from '../../components/settings/SettingCard';
+import ToggleBar from '../../components/settings/ToggleBar';
 
 const Settings = () => {
   return (
-    <View>
-      <Text>Settings screen</Text>
-      <Button title="Go to submodules" />
+    <View style={styles.container}>
+      <ToggleBar />
+      <SettingCard />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: 30,
+  },
+});
 
 export default Settings;

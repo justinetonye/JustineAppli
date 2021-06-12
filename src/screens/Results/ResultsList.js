@@ -16,10 +16,10 @@ const ResultsList = () => {
             <Card />
           </View>
         </View>
-        <View>
-          <Text>Résultats</Text>
+        <View style={styles.listSection}>
+          <Text style={styles.title}>Résultats précédents</Text>
           <View>
-            <Text>27/05/2021</Text>
+            <Text style={styles.dateSpacing}>27/05/2021</Text>
             <View style={styles.spacing}>
               <Card />
             </View>
@@ -64,6 +64,13 @@ const styles = StyleSheet.create({
   },
   date: {
     opacity: 0.7,
+  },
+  listSection: {
+    marginTop: 30,
+  },
+  dateSpacing: {
+    marginTop: 30,
+    marginBottom: 10,
   },
 });
 export default ResultsList;
