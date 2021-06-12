@@ -1,28 +1,29 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import ResetButton from '../buttons/ResetButton';
+import CardItem from './CardItem';
 
-const SettingCard = () => {
+const SettingCard = ({navigation}) => {
   return (
     <View>
       <View style={styles.header}>
         <Text style={styles.title}>Mésures par fréquence (Défaut)</Text>
-        <View style={styles.edit}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('EditSettings')}
+          style={styles.edit}>
           <Ionicons name="create-outline" color="red" size={15} />
           <Text style={styles.primary}>Modifier</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.container}>
-        <View>
-          <Text>Fréquence de prise</Text>
-        </View>
-        <View>
-          <Text>Date de début</Text>
-        </View>
-        <View>
-          <Text>Date de fin</Text>
-        </View>
+        <CardItem name="Fréquence de prise" value="30min" />
+        <CardItem name="Date de début" value="27-08-2021" />
+        <CardItem name="Date de fin" value="29-08-2021" />
+      </View>
+      <View style={styles.resetButton}>
+        <ResetButton />
       </View>
     </View>
   );
@@ -51,8 +52,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 20,
+    marginTop: 30,
     marginBottom: 20,
+  },
+  resetButton: {
+    marginTop: 50,
+    width: 150,
+    alignSelf: 'center',
   },
 });
 
