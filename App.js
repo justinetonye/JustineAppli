@@ -1,11 +1,11 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { View, Text } from 'react-native';
+import {View, Text} from 'react-native';
 import Ping from 'react-native-ping';
+import {NavigationContainer} from '@react-navigation/native';
+import {DrawerNavigator} from './src/navigation/DrawerNavigator';
 
-
-
- async function pingFunction() {
-
+async function pingFunction() {
   try {
     /**
      *
@@ -18,44 +18,35 @@ import Ping from 'react-native-ping';
      * @returns
      * @memberof Ping
      */
-    const ms = await Ping.start('8.8.8.8',{ timeout: 1000 });
+    const ms = await Ping.start('8.8.8.8', {timeout: 1000});
     console.log(`Time in ms : ${ms}`);
   } catch (error) {
-    console.log('special code',error.code, error.message);
-  } 
+    console.log('special code', error.code, error.message);
+  }
 
   const {
-     receivedNetworkSpeed,
-     sendNetworkSpeed,
-     receivedNetworkTotal,
-     sendNetworkTotal
-   } = await Ping.getTrafficStats();
+    receivedNetworkSpeed,
+    sendNetworkSpeed,
+    receivedNetworkTotal,
+    sendNetworkTotal,
+  } = await Ping.getTrafficStats();
 
-  console.log(`Received network speed (download/sec) ${receivedNetworkSpeed}`)
-  console.log(`sendNetworkSpeed speed (upload/sec) ${sendNetworkSpeed}`)
-  console.log(`receivedNetworkTotal speed (download Total) ${receivedNetworkTotal}`)
-  console.log(`sendNetworkTotal speed UploadTotal ${sendNetworkTotal}`)
-  
-  //const result = await RNReactNativePing.getTrafficStats();
-
+  console.log(`Received network speed (download/sec) ${receivedNetworkSpeed}`);
+  console.log(`sendNetworkSpeed speed (upload/sec) ${sendNetworkSpeed}`);
+  console.log(
+    `receivedNetworkTotal speed (download Total) ${receivedNetworkTotal}`,
+  );
+  console.log(`sendNetworkTotal speed UploadTotal ${sendNetworkTotal}`);
 }
 
+const App = () => {
+  pingFunction();
 
+  return (
+    <NavigationContainer>
+      <DrawerNavigator />
+    </NavigationContainer>
+  );
+};
 
-
-
-
-const App = ()=> {
-
-
-
-  pingFunction()
-
-  return(
-    <View>
-      <Text>Hello</Text>
-    </View>
-  )
-}
-
-export default App
+export default App;
