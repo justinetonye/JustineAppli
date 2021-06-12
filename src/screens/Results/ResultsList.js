@@ -1,25 +1,69 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import Result from './Result';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import Card from '../../components/card/Card';
 
 const ResultsList = () => {
   return (
-    <View style={styles.center}>
-      <Text> This is the results list </Text>
-      <Result />
-      <Result />
-      <Result />
-      <Result />
-      <Result />
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View>
+        <View>
+          <View style={styles.horizontalHeader}>
+            <Text style={styles.title}> Résultat récent </Text>
+            <Text style={styles.date}> 27/05/2021 </Text>
+          </View>
+
+          <View style={styles.spacing}>
+            <Card />
+          </View>
+        </View>
+        <View>
+          <Text>Résultats</Text>
+          <View>
+            <Text>27/05/2021</Text>
+            <View style={styles.spacing}>
+              <Card />
+            </View>
+            <View style={styles.spacing}>
+              <Card />
+            </View>
+            <View style={styles.spacing}>
+              <Card />
+            </View>
+            <View style={styles.spacing}>
+              <Card />
+            </View>
+            <View style={styles.spacing}>
+              <Card />
+            </View>
+            <View style={styles.spacing}>
+              <Card />
+            </View>
+          </View>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
+  container: {
     alignItems: 'center',
+  },
+  spacing: {
+    marginTop: 10,
+  },
+  horizontalHeader: {
+    marginTop: 30,
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  date: {
+    opacity: 0.7,
   },
 });
 export default ResultsList;
