@@ -1,10 +1,11 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import CardItem from './cardItem';
+import CardLayout from './CardLayout';
 
 const Card = () => {
   return (
-    <View style={styles.card}>
+    <CardLayout>
       <View style={styles.header}>
         <Text>CAMTEL</Text>
         <Text>07h:00</Text>
@@ -18,18 +19,11 @@ const Card = () => {
         <CardItem title="Ping" value="100ms" />
         <CardItem title="Ping" value="100ms" />
       </View>
-    </View>
+    </CardLayout>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: 'white',
-    elevation: 1,
-    borderRadius: 3,
-    padding: 25,
-    width: 350,
-  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',

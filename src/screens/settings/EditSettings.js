@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import RadioButton from '../../components/radioButtons/RadioButton';
+import UniqueSetting from '../../components/settings/UniqueSetting';
 
 const EditSettings = () => {
   // Declaring variables
@@ -18,8 +19,6 @@ const EditSettings = () => {
     );
     setTypeMeasure(updatedState);
   };
-  console.log(typeMeasure);
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Type de Mésures</Text>
@@ -33,6 +32,7 @@ const EditSettings = () => {
           </RadioButton>
         ))}
       </View>
+      <UniqueSetting />
     </View>
   );
 };
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   btnGroup: {
     marginTop: 10,
     flexDirection: 'row',
+    marginBottom: 20,
   },
 });
 
