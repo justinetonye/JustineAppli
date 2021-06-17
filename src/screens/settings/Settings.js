@@ -3,11 +3,11 @@ import {View, Button, Text, StyleSheet} from 'react-native';
 import SettingCard from '../../components/settings/SettingCard';
 import ToggleBar from '../../components/settings/ToggleBar';
 
-const Settings = () => {
+const Settings = ({navigation}) => {
   return (
     <View style={styles.container}>
       <ToggleBar />
-      <SettingCard />
+      <SettingCard navigation={navigation} />
     </View>
   );
 };
