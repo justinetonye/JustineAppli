@@ -3,21 +3,20 @@ import {Text, View, StyleSheet} from 'react-native';
 import CardItem from './cardItem';
 import CardLayout from './CardLayout';
 
-const Card = () => {
+const Card = ({latency,jitter, packetLoss, upload,download,operator, date}) => {
   return (
     <CardLayout>
       <View style={styles.header}>
-        <Text>CAMTEL</Text>
-        <Text>07h:00</Text>
+        <Text>{operator}</Text>
+        <Text>{date}</Text>
       </View>
 
       <View style={styles.values}>
-        <CardItem title="Ping" value="100ms" />
-        <CardItem title="Ping" value="100ms" />
-        <CardItem title="Ping" value="100ms" />
-        <CardItem title="Ping" value="100ms" />
-        <CardItem title="Ping" value="100ms" />
-        <CardItem title="Ping" value="100ms" />
+        <CardItem title="Latence" value={`${latency}ms`} />
+        <CardItem title="gigue" value={`${jitter}ms`} />
+        <CardItem title="packetLoss" value={`${packetLoss}%`} />
+        <CardItem title="upload" value={`${upload}Mbps`} />
+        <CardItem title="download" value={`${download}Mbps`} />
       </View>
     </CardLayout>
   );
