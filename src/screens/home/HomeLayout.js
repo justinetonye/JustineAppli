@@ -13,7 +13,7 @@ const HomeLayout = ({children}) => {
 const styles = StyleSheet.create({
   layout: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     paddingVertical: 100,
   },
