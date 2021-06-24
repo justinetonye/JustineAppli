@@ -3,12 +3,12 @@ import {Text, View, StyleSheet} from 'react-native';
 import CardItem from './cardItem';
 import CardLayout from './CardLayout';
 
-const Card = ({latency,jitter, packetLoss, upload,download,operator, date}) => {
+const Card = ({latency,jitter, packetLoss, upload,download,operator, temps}) => {
   return (
     <CardLayout>
       <View style={styles.header}>
         <Text>{operator}</Text>
-        <Text>{date}</Text>
+        <Text>{temps}</Text>
       </View>
 
       <View style={styles.values}>
