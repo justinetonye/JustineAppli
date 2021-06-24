@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import Card from '../../components/card/Card';
+import Layout from '../../components/layout/Layout';
 
 const ResultsList = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View>
+      <Layout>
         <View>
           <View style={styles.horizontalHeader}>
             <Text style={styles.title}> Résultat récent </Text>
@@ -40,7 +41,7 @@ const ResultsList = () => {
             </View>
           </View>
         </View>
-      </View>
+      </Layout>
     </ScrollView>
   );
 };

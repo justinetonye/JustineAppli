@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Button, StyleSheet, Text} from 'react-native';
+import Layout from '../../components/layout/Layout';
 
 const Notifications = () => {
   return (
-    <View>
+    <Layout>
       <Text>Notifications screens</Text>
-    </View>
+    </Layout>
   );
 };
 

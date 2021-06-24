@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import StartButton from '../../components/buttons/StartButton';
-import Layout from './Layout';
+import HomeLayout from './HomeLayout';
 
 const Home = ({navigation}) => {
   return (
-    <Layout>
+    <HomeLayout>
       <StartButton onPress={() => navigation.navigate('HomeResults')} />
-    </Layout>
+    </HomeLayout>
   );
 };
 

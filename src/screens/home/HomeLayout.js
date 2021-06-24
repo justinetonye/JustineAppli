@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const Layout = ({children}) => {
+const HomeLayout = ({children}) => {
   return (
     <View style={styles.layout}>
       <Text style={styles.text}> CAMTEL </Text>
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
-export default Layout;
+export default HomeLayout;
