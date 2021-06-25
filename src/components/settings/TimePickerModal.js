@@ -3,8 +3,7 @@ import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Modal from 'react-native-modal';
 import DatePicker from 'react-native-date-picker';
 
-const DatePickerModal = ({visible, setVisible, date, setDate, mode}) => {
-  console.log(mode);
+const TimePickerModal = ({visible, setVisible, date, setDate, mode}) => {
   const toggleModal = () => {
     setVisible(!visible);
   };
@@ -15,8 +14,9 @@ const DatePickerModal = ({visible, setVisible, date, setDate, mode}) => {
         <View style={styles.modalContent}>
           <DatePicker
             locale="fr"
-            is24hourSource="locale"
             date={date}
+            is24hourSource="locale"
+            mode="time"
             onDateChange={setDate}
             androidVariant="nativeAndroid"
           />
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DatePickerModal;
+export default TimePickerModal;

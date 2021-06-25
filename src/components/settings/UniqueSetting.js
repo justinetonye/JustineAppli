@@ -3,18 +3,29 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import CardLayout from '../card/CardLayout';
 import CardItem from './CardItem';
 import DatePickerModal from './DatePickerModal';
+import TimePickerModal from './TimePickerModal';
 
 const UniqueSetting = () => {
   // Modal state
-  const [visible, setVisible] = useState(false);
+  const [visibleDD, setVisibleDD] = useState(false);
+  const [visibleDF, setVisibleDF] = useState(false);
+  const [visibleHP, setVisibleHP] = useState(false);
 
   const [dateDebut, setDateDebut] = useState(new Date());
 
   const [dateDeFin, setDateDeFin] = useState(new Date());
   const [heureDePrise, setHeureDePrise] = useState(new Date());
 
-  const toggleModal = () => {
-    setVisible(!visible);
+  const toggleModalDD = () => {
+    setVisibleDD(!visibleDD);
+  };
+
+  const toggleModalDF = () => {
+    setVisibleDF(!visibleDF);
+  };
+
+  const toggleModalHP = () => {
+    setVisibleHP(!visibleHP);
   };
 
   //console.log(dateDebut);
@@ -23,54 +34,73 @@ const UniqueSetting = () => {
 
   return (
     <CardLayout>
+      {/* Date de début */}
       <CardItem
         name="Date de début"
         value={
           <View>
-            <TouchableOpacity onPress={() => toggleModal()}>
-              <Text style={styles.textAction}>Choisir</Text>
+            <TouchableOpacity onPress={() => toggleModalDD()}>
+              <Text style={styles.textAction}>
+                {dateDebut
+                  ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth()} - ${dateDebut.getFullYear()}, ${dateDebut.getHours()}h : ${dateDebut.getMinutes()}min`
+                  : 'choisir'}
+              </Text>
             </TouchableOpacity>
             <View style={styles.dateModal}>
               <DatePickerModal
+                mode="datetime"
                 date={dateDebut}
                 setDate={setDateDebut}
-                visible={visible}
-                setVisible={setVisible}
+                visible={visibleDD}
+                setVisible={setVisibleDD}
               />
             </View>
           </View>
         }
       />
+      {/* Date de fin */}
       <CardItem
         name="Date de fin"
         value={
           <View>
-            <TouchableOpacity onPress={() => toggleModal()}>
-              <Text style={styles.textAction}>Choisir</Text>
+            <TouchableOpacity onPress={() => toggleModalDF()}>
+              <Text style={styles.textAction}>
+                {dateDeFin
+                  ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth()} - ${dateDeFin.getFullYear()}, ${dateDeFin.getHours()}h : ${dateDeFin.getMinutes()}min`
+                  : 'choisir'}
+              </Text>
             </TouchableOpacity>
             <View style={styles.dateModal}>
               <DatePickerModal
+                mode="datetime"
                 date={dateDeFin}
                 setDate={setDateDeFin}
-                visible={visible}
-                setVisible={setVisible}
+                visible={visibleDF}
+                setVisible={setVisibleDF}
               />
             </View>
           </View>
         }
       />
+
+      {/* Heure de prise */}
       <CardItem
         name="Heure de prise"
         value={
           <View>
-            <TouchableOpacity onPress={() => toggleModal()}>
-              <Text style={styles.textAction}>Choisir</Text>
+            <TouchableOpacity onPress={() => toggleModalHP()}>
+              <Text style={styles.textAction}>
+                {' '}
+                {heureDePrise
+                  ? ` ${heureDePrise.getHours()}h : ${heureDePrise.getMinutes()}min`
+                  : 'choisir'}
+              </Text>
             </TouchableOpacity>
-            <DatePickerModal
+            <TimePickerModal
               date={heureDePrise}
               setDate={setHeureDePrise}
-              visible={visible}
-              setVisible={setVisible}
+              visible={visibleHP}
+              setVisible={setVisibleHP}
               mode="time"
             />
           </View>
