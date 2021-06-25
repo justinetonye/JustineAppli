@@ -10,12 +10,14 @@ const SettingCard = ({navigation}) => {
     <View>
       <View style={styles.header}>
         <Text style={styles.title}>Mésures par fréquence (Défaut)</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('EditSettings')}
-          style={styles.edit}>
-          <Ionicons name="create-outline" color="red" size={15} />
-          <Text style={styles.primary}>Modifier</Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('EditSettings')}
+            style={styles.edit}>
+            <Ionicons name="create-outline" color="red" size={15} />
+            <Text style={styles.primary}>Modifier</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.container}>
         <CardItem name="Fréquence de prise" value="30min" />
@@ -41,6 +43,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: 30,
+    marginBottom: 20,
   },
   edit: {
     flexDirection: 'row',
@@ -53,8 +57,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 30,
-    marginBottom: 20,
   },
   resetButton: {
     marginTop: 50,
