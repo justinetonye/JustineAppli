@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import RadioButton from '../../components/radioButtons/RadioButton';
+import FrequencySetting from '../../components/settings/FrequencySetting';
 import UniqueSetting from '../../components/settings/UniqueSetting';
 
 const EditSettings = () => {
   // Declaring variables
   const [typeMeasure, setTypeMeasure] = useState([
     {id: 1, value: 'unique', name: 'Unique', selected: true},
-    {id: 2, value: 'frequency', name: 'Frequency', selected: false},
+    {id: 2, value: 'frequency', name: 'Par fréquence', selected: false},
   ]);
 
   //   Handling the click action
@@ -32,7 +33,7 @@ const EditSettings = () => {
           </RadioButton>
         ))}
       </View>
-      <UniqueSetting />
+      {typeMeasure[0].selected ? <UniqueSetting /> : <FrequencySetting />}
     </View>
   );
 };

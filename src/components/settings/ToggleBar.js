@@ -1,14 +1,7 @@
 import React from 'react';
-import {useState} from 'react';
 import {Text, View, Switch, StyleSheet} from 'react-native';
 
-const ToggleBar = () => {
-  // Declaring the state of the toggle button
-  const [isEnabled, setIsEnabled] = useState(false);
-
-  // Enabling the switch button when clicked
-  const toggleSwitch = () => setIsEnabled(prev => !prev);
-
+const ToggleBar = ({isEnabled, setIsEnabled}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Mésures automatiques</Text>
@@ -16,7 +9,7 @@ const ToggleBar = () => {
         trackColor={{false: '#767577', true: 'red'}}
         thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
         ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
+        onValueChange={() => setIsEnabled(prev => !prev)}
         value={isEnabled}
       />
     </View>
