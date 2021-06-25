@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     elevation: 1,
     borderRadius: 3,
-    padding: 25,
+    padding: 15,
     marginHorizontal: 0,
   },
 });
