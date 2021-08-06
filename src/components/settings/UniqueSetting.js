@@ -5,6 +5,7 @@ import CardLayout from '../card/CardLayout';
 import CardItem from './CardItem';
 import DatePickerModal from './DatePickerModal';
 import TimePickerModal from './TimePickerModal';
+//Testing a library
 
 const UniqueSetting = () => {
   // Modal states
@@ -12,10 +13,10 @@ const UniqueSetting = () => {
   const [visibleDF, setVisibleDF] = useState(false);
   const [visibleHP, setVisibleHP] = useState(false);
 
-  const [dateDebut, setDateDebut] = useState(new Date());
+  const [dateDebut, setDateDebut] = useState(new Date((1598051730000)));
 
-  const [dateDeFin, setDateDeFin] = useState(new Date());
-  const [heureDePrise, setHeureDePrise] = useState(new Date());
+  const [dateDeFin, setDateDeFin] = useState(new Date((1598051730000)));
+  const [heureDePrise, setHeureDePrise] = useState(new Date((1598051730000)));
 
   const toggleModalDD = () => {
     setVisibleDD(!visibleDD);
@@ -28,6 +29,12 @@ const UniqueSetting = () => {
   const toggleModalHP = () => {
     setVisibleHP(!visibleHP);
   };
+
+  // Testing the datetime picker library
+  console.log(dateDebut)
+  // end
+
+
 
   return (
     <View>
@@ -46,8 +53,7 @@ const UniqueSetting = () => {
               </TouchableOpacity>
               <View style={styles.dateModal}>
                 <DatePickerModal
-                  mode="datetime"
-                  date={dateDebut}
+                date={dateDebut}
                   setDate={setDateDebut}
                   visible={visibleDD}
                   setVisible={setVisibleDD}
@@ -69,9 +75,8 @@ const UniqueSetting = () => {
                 </Text>
               </TouchableOpacity>
               <View style={styles.dateModal}>
-                <DatePickerModal
-                  mode="datetime"
-                  date={dateDeFin}
+              <DatePickerModal
+                date={dateDeFin}
                   setDate={setDateDeFin}
                   visible={visibleDF}
                   setVisible={setVisibleDF}

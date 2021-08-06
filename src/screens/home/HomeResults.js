@@ -16,16 +16,15 @@ const HomeResults = () => {
       </View>
     </Layout>
     </HomeLayout>
-    
   );
   
 };
 
 const styles = StyleSheet.create({
   resetButton:{
-justifyContent: 'center',
-alignItems:'center',
-marginTop: 25,
+  justifyContent: 'center',
+  alignItems:'center',
+  marginTop: 25,
   }
 })
 export default HomeResults;

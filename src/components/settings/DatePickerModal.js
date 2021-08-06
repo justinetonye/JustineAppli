@@ -1,42 +1,51 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import Modal from 'react-native-modal';
-import DatePicker from 'react-native-date-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-const DatePickerModal = ({visible, setVisible, date, setDate, mode}) => {
-  console.log(mode);
+
+const DatePickerModal = ({visible, setVisible, date, setDate}) => {
+
+
   const toggleModal = () => {
     setVisible(!visible);
   };
+
+  const [mode, setMode] = useState('date');
+  
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setVisible(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
+
   return (
-    <Modal isVisible={visible}>
-      <View style={styles.modal}>
-        <Text style={styles.modalTitle}>Choisir une date</Text>
-        <View style={styles.modalContent}>
-          <DatePicker
-            locale="fr"
-            is24hourSource="locale"
-            date={date}
-            onDateChange={setDate}
-            androidVariant="nativeAndroid"
-          />
-        </View>
+<View>
+        <TouchableOpacity onPress={showDatepicker} style={styles.modalTitle}><Text>Choisir une date</Text></TouchableOpacity>
+         {visible && <DateTimePicker
+            is24Hour={true}
+            testID="dateTimePicker"
+            mode={mode}
+            value={date}
+            onChange={onChange}
+            display="default"
+          />} 
         <View>
-          <View style={styles.modalFooter}>
-            {/* <TouchableOpacity
-              style={styles.cancelBtn}
-              onPress={() => toggleModal()}>
-              <Text style={styles.cancelBtnText}>Annuler</Text>
-            </TouchableOpacity> */}
-            <TouchableOpacity
-              onPress={() => toggleModal()}
-              style={styles.validateBtn}>
-              <Text style={styles.validateBtnText}>Valider</Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </View>
-    </Modal>
+      
   );
 };
 
