@@ -68,9 +68,9 @@ const UniqueSetting = () => {
 
   console.log('date de début ' + dateDebut);
 
-  //console.log('date de fin ' + dateDeFin);
+  console.log('date de fin ' + dateDeFin);
 
-  //console.log('heure de prise ' + heureDePrise);
+  console.log('heure de prise ' + heureDePrise);
 
   return (
     <View>
@@ -113,7 +113,6 @@ const UniqueSetting = () => {
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
-              <View style={styles.dateModal}></View>
             </View>
           }
         />
