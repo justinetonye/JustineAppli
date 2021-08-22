@@ -3,7 +3,6 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import PrimaryButton from '../buttons/PrimaryButton';
 import CardLayout from '../card/CardLayout';
 import CardItem from './CardItem';
-import DatePickerModal from './DatePickerModal';
 import {Picker} from '@react-native-picker/picker';
 
 const FrequencySetting = () => {
@@ -49,15 +48,7 @@ const FrequencySetting = () => {
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
-              <View style={styles.dateModal}>
-                <DatePickerModal
-                  mode="datetime"
-                  date={dateDebut}
-                  setDate={setDateDebut}
-                  visible={visibleDD}
-                  setVisible={setVisibleDD}
-                />
-              </View>
+              <View style={styles.dateModal}></View>
             </View>
           }
         />
@@ -73,15 +64,7 @@ const FrequencySetting = () => {
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
-              <View style={styles.dateModal}>
-                <DatePickerModal
-                  mode="datetime"
-                  date={dateDeFin}
-                  setDate={setDateDeFin}
-                  visible={visibleDF}
-                  setVisible={setVisibleDF}
-                />
-              </View>
+              <View style={styles.dateModal}>/></View>
             </View>
           }
         />

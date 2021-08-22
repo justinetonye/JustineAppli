@@ -1,40 +1,76 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import PrimaryButton from '../buttons/PrimaryButton';
 import CardLayout from '../card/CardLayout';
 import CardItem from './CardItem';
-import DatePickerModal from './DatePickerModal';
-import TimePickerModal from './TimePickerModal';
-//Testing a library
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const UniqueSetting = () => {
-  // Modal states
-  const [visibleDD, setVisibleDD] = useState(false);
-  const [visibleDF, setVisibleDF] = useState(false);
-  const [visibleHP, setVisibleHP] = useState(false);
+  /* Date de debut settings */
 
-  const [dateDebut, setDateDebut] = useState(new Date((1598051730000)));
-
-  const [dateDeFin, setDateDeFin] = useState(new Date((1598051730000)));
-  const [heureDePrise, setHeureDePrise] = useState(new Date((1598051730000)));
-
-  const toggleModalDD = () => {
-    setVisibleDD(!visibleDD);
+  const [dateDebut, setDateDebut] = useState(new Date());
+  const [modeDD, setModeDD] = useState('date');
+  const [showDD, setShowDD] = useState(false);
+  const onChangeDD = (event, selectedDate) => {
+    const currentDate = selectedDate || dateDebut;
+    setShowDD(Platform.OS === 'ios');
+    setDateDebut(currentDate);
   };
 
-  const toggleModalDF = () => {
-    setVisibleDF(!visibleDF);
+  const showModeDD = currentMode => {
+    setModeDD(currentMode);
+  };
+  const showDatepickerDD = () => {
+    showModeDD('date');
+    setShowDD(true);
   };
 
-  const toggleModalHP = () => {
-    setVisibleHP(!visibleHP);
+  /* End Date de debut settings */
+
+  /* Date de fin settings */
+
+  const [dateDeFin, setDateDeFin] = useState(new Date());
+  const [modeDF, setModeDF] = useState('date');
+  const [showDF, setShowDF] = useState(false);
+  const onChangeDF = (event, selectedDate) => {
+    const currentDate = selectedDate || dateDeFin;
+    setShowDF(Platform.OS === 'ios');
+    setDateDeFin(currentDate);
   };
 
-  // Testing the datetime picker library
-  console.log(dateDebut)
-  // end
+  const showModeDF = currentMode => {
+    setModeDF(currentMode);
+  };
+  const showDatepickerDF = () => {
+    showModeDF('date');
+    setShowDF(true);
+  };
+  /* End Date de fin settings */
 
+  /* Heure de prise settings */
+  const [heureDePrise, setHeureDePrise] = useState(new Date());
+  const [modeHP, setModeHP] = useState('date');
+  const [showHP, setShowHP] = useState(false);
+  const onChangeHP = (event, selectedDate) => {
+    const currentDate = selectedDate || heureDePrise;
+    setShowHP(Platform.OS === 'ios');
+    setHeureDePrise(currentDate);
+  };
 
+  const showModeHP = currentMode => {
+    setModeHP(currentMode);
+  };
+  const showDatepickerHP = () => {
+    showModeHP('time');
+    setShowHP(true);
+  };
+  /* End Heure de prise settings */
+
+  console.log('date de début ' + dateDebut);
+
+  //console.log('date de fin ' + dateDeFin);
+
+  //console.log('heure de prise ' + heureDePrise);
 
   return (
     <View>
@@ -44,54 +80,61 @@ const UniqueSetting = () => {
           name="Date de début"
           value={
             <View>
-              <TouchableOpacity onPress={() => toggleModalDD()}>
+              <TouchableOpacity onPress={showDatepickerDD}>
                 <Text style={styles.textAction}>
                   {dateDebut
                     ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth()} - ${dateDebut.getFullYear()}, ${dateDebut.getHours()}h : ${dateDebut.getMinutes()}min`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
-              <View style={styles.dateModal}>
-                <DatePickerModal
-                date={dateDebut}
-                  setDate={setDateDebut}
-                  visible={visibleDD}
-                  setVisible={setVisibleDD}
-                />
-              </View>
             </View>
           }
         />
+        {showDD && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={dateDebut}
+            mode={modeDD}
+            is24Hour={true}
+            display="default"
+            onChange={onChangeDD}
+          />
+        )}
+
         {/* Date de fin */}
         <CardItem
           name="Date de fin"
           value={
             <View>
-              <TouchableOpacity onPress={() => toggleModalDF()}>
+              <TouchableOpacity onPress={showDatepickerDF}>
                 <Text style={styles.textAction}>
                   {dateDeFin
                     ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth()} - ${dateDeFin.getFullYear()}, ${dateDeFin.getHours()}h : ${dateDeFin.getMinutes()}min`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
-              <View style={styles.dateModal}>
-              <DatePickerModal
-                date={dateDeFin}
-                  setDate={setDateDeFin}
-                  visible={visibleDF}
-                  setVisible={setVisibleDF}
-                />
-              </View>
+              <View style={styles.dateModal}></View>
             </View>
           }
         />
+
+        {showDF && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={dateDeFin}
+            mode={modeDF}
+            is24Hour={true}
+            display="default"
+            onChange={onChangeDF}
+          />
+        )}
 
         {/* Heure de prise */}
         <CardItem
           name="Heure de prise"
           value={
             <View>
-              <TouchableOpacity onPress={() => toggleModalHP()}>
+              <TouchableOpacity onPress={showDatepickerHP}>
                 <Text style={styles.textAction}>
                   {' '}
                   {heureDePrise
@@ -99,16 +142,20 @@ const UniqueSetting = () => {
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
-              <TimePickerModal
-                date={heureDePrise}
-                setDate={setHeureDePrise}
-                visible={visibleHP}
-                setVisible={setVisibleHP}
-                mode="time"
-              />
             </View>
           }
         />
+
+        {showHP && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={heureDePrise}
+            mode={modeHP}
+            is24Hour={true}
+            display="default"
+            onChange={onChangeHP}
+          />
+        )}
       </CardLayout>
 
       {/* Save button */}
