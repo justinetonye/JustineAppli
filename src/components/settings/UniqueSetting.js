@@ -80,11 +80,7 @@ const UniqueSetting = () => {
           name="Date de début"
           value={
             <View>
-<<<<<<< HEAD
-             <TouchableOpacity onPress={() => showMode('date')} style={styles.modalTitle}><Text>Choisir une date</Text>
-=======
               <TouchableOpacity onPress={showDatepickerDD}>
->>>>>>> e8c68b4ca69ce65fc483cdd058411330060499e3
                 <Text style={styles.textAction}>
                   {dateDebut
                     ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth()} - ${dateDebut.getFullYear()}`
@@ -110,22 +106,14 @@ const UniqueSetting = () => {
           name="Date de fin"
           value={
             <View>
-<<<<<<< HEAD
-             <TouchableOpacity onPress={() => showMode('date')} style={styles.modalTitle}><Text>Choisir une date</Text>
-              <Text style={styles.textAction}>
-=======
               <TouchableOpacity onPress={showDatepickerDF}>
                 <Text style={styles.textAction}>
->>>>>>> e8c68b4ca69ce65fc483cdd058411330060499e3
                   {dateDeFin
                     ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth()} - ${dateDeFin.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
-<<<<<<< HEAD
-=======
               <View style={styles.dateModal}></View>
->>>>>>> e8c68b4ca69ce65fc483cdd058411330060499e3
             </View>
           }
         />
@@ -146,11 +134,7 @@ const UniqueSetting = () => {
           name="Heure de prise"
           value={
             <View>
-<<<<<<< HEAD
-             <TouchableOpacity onPress={() => showMode('time')} style={styles.modalTitle}><Text>Choisir une heure</Text>
-=======
               <TouchableOpacity onPress={showDatepickerHP}>
->>>>>>> e8c68b4ca69ce65fc483cdd058411330060499e3
                 <Text style={styles.textAction}>
                   {' '}
                   {heureDePrise
@@ -173,16 +157,6 @@ const UniqueSetting = () => {
           />
         )}
       </CardLayout>
-
-      {show && (
-        <DateTimePicker
-          testID='dateTimePicker'
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          display='default'
-          onChange={onChange}
-          />)}
         
       {/* Save button */}
       <View style={styles.saveButton}>
@@ -207,3 +181,5 @@ const UniqueSetting = () => {
       justifyContent: 'center',
     },
   });
+
+  export default UniqueSetting;
