@@ -1,26 +1,52 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Platform, View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import PrimaryButton from '../buttons/PrimaryButton';
 import CardLayout from '../card/CardLayout';
 import CardItem from './CardItem';
 import {Picker} from '@react-native-picker/picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const FrequencySetting = () => {
-  // Modal states
-  const [visibleDD, setVisibleDD] = useState(false);
-  const [visibleDF, setVisibleDF] = useState(false);
+  /* Date de debut settings */
 
   const [dateDebut, setDateDebut] = useState(new Date());
+  const [modeDD, setModeDD] = useState('date');
+  const [showDD, setShowDD] = useState(false);
+  const onChangeDD = (event, selectedDate) => {
+    const currentDate = selectedDate || dateDebut;
+    setShowDD(Platform.OS === 'ios');
+    setDateDebut(currentDate);
+  };
+
+  const showModeDD = currentMode => {
+    setModeDD(currentMode);
+  };
+  const showDatepickerDD = () => {
+    showModeDD('date');
+    setShowDD(true);
+  };
+
+  /* End Date de debut settings */
+
+  /* Date de fin settings */
 
   const [dateDeFin, setDateDeFin] = useState(new Date());
-
-  const toggleModalDD = () => {
-    setVisibleDD(!visibleDD);
+  const [modeDF, setModeDF] = useState('date');
+  const [showDF, setShowDF] = useState(false);
+  const onChangeDF = (event, selectedDate) => {
+    const currentDate = selectedDate || dateDeFin;
+    setShowDF(Platform.OS === 'ios');
+    setDateDeFin(currentDate);
   };
 
-  const toggleModalDF = () => {
-    setVisibleDF(!visibleDF);
+  const showModeDF = currentMode => {
+    setModeDF(currentMode);
   };
+  const showDatepickerDF = () => {
+    showModeDF('date');
+    setShowDF(true);
+  };
+  /* End Date de fin settings */
 
   //   Picker's states
 
@@ -41,14 +67,13 @@ const FrequencySetting = () => {
           name="Date de début"
           value={
             <View>
-              <TouchableOpacity onPress={() => toggleModalDD()}>
+              <TouchableOpacity onPress={showDatepickerDD}>
                 <Text style={styles.textAction}>
                   {dateDebut
-                    ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth()} - ${dateDebut.getFullYear()}, ${dateDebut.getHours()}h : ${dateDebut.getMinutes()}min`
+                    ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth()} - ${dateDebut.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
-              <View style={styles.dateModal}></View>
             </View>
           }
         />
@@ -57,17 +82,27 @@ const FrequencySetting = () => {
           name="Date de fin"
           value={
             <View>
-              <TouchableOpacity onPress={() => toggleModalDF()}>
+              <TouchableOpacity onPress={showDatepickerDF}>
                 <Text style={styles.textAction}>
                   {dateDeFin
-                    ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth()} - ${dateDeFin.getFullYear()}, ${dateDeFin.getHours()}h : ${dateDeFin.getMinutes()}min`
+                    ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth()} - ${dateDeFin.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
-              <View style={styles.dateModal}>/></View>
             </View>
           }
         />
+
+        {showDD && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={dateDebut}
+            mode={modeDD}
+            is24Hour={true}
+            display="default"
+            onChange={onChangeDD}
+          />
+        )}
 
         {/* Fréquence de prise */}
         <CardItem
@@ -89,6 +124,16 @@ const FrequencySetting = () => {
             </View>
           }
         />
+        {showDF && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={dateDeFin}
+            mode={modeDF}
+            is24Hour={true}
+            display="default"
+            onChange={onChangeDF}
+          />
+        )}
       </CardLayout>
 
       {/* Save button */}

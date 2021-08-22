@@ -68,9 +68,9 @@ const UniqueSetting = () => {
 
   console.log('date de début ' + dateDebut);
 
-  //console.log('date de fin ' + dateDeFin);
+  console.log('date de fin ' + dateDeFin);
 
-  //console.log('heure de prise ' + heureDePrise);
+  console.log('heure de prise ' + heureDePrise);
 
   return (
     <View>
@@ -83,7 +83,7 @@ const UniqueSetting = () => {
               <TouchableOpacity onPress={showDatepickerDD}>
                 <Text style={styles.textAction}>
                   {dateDebut
-                    ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth()} - ${dateDebut.getFullYear()}, ${dateDebut.getHours()}h : ${dateDebut.getMinutes()}min`
+                    ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth()} - ${dateDebut.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
@@ -109,11 +109,10 @@ const UniqueSetting = () => {
               <TouchableOpacity onPress={showDatepickerDF}>
                 <Text style={styles.textAction}>
                   {dateDeFin
-                    ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth()} - ${dateDeFin.getFullYear()}, ${dateDeFin.getHours()}h : ${dateDeFin.getMinutes()}min`
+                    ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth()} - ${dateDeFin.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
-              <View style={styles.dateModal}></View>
             </View>
           }
         />
