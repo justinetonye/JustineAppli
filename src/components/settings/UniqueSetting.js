@@ -83,7 +83,7 @@ const UniqueSetting = () => {
               <TouchableOpacity onPress={showDatepickerDD}>
                 <Text style={styles.textAction}>
                   {dateDebut
-                    ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth()} - ${dateDebut.getFullYear()}`
+                    ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth () +1} - ${dateDebut.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
@@ -109,7 +109,7 @@ const UniqueSetting = () => {
               <TouchableOpacity onPress={showDatepickerDF}>
                 <Text style={styles.textAction}>
                   {dateDeFin
-                    ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth()} - ${dateDeFin.getFullYear()}`
+                    ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth() +1} - ${dateDeFin.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>

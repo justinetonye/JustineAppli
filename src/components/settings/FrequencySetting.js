@@ -53,11 +53,11 @@ const FrequencySetting = () => {
   const [selected, setSelected] = useState('h');
 
   const data = [
-    {label: '30min', value: '30min'},
-    {label: '1h:00', value: '1h:00'},
-    {label: '1h:30', value: '1h:30'},
-    {label: '2h:00', value: '2h:00'},
-    {label: '2h:00', value: '2h:00'},
+    {id:1, label: '30min', value: '30min'},
+    {id:2, label: '1h:00', value: '1h:00'},
+    {id:3, label: '1h:30', value: '1h:30'},
+    {id:4, label: '2h:00', value: '2h:00'},
+    {id:5, label: '2h:30', value: '2h:30'},
   ];
   return (
     <View>
@@ -70,7 +70,7 @@ const FrequencySetting = () => {
               <TouchableOpacity onPress={showDatepickerDD}>
                 <Text style={styles.textAction}>
                   {dateDebut
-                    ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth()} - ${dateDebut.getFullYear()}`
+                    ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth() +1} - ${dateDebut.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
@@ -85,7 +85,7 @@ const FrequencySetting = () => {
               <TouchableOpacity onPress={showDatepickerDF}>
                 <Text style={styles.textAction}>
                   {dateDeFin
-                    ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth()} - ${dateDeFin.getFullYear()}`
+                    ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth() +1} - ${dateDeFin.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
@@ -116,8 +116,10 @@ const FrequencySetting = () => {
                     mode={'dropdown'}
                     style={styles.picker}
                     onValueChange={value => setSelected(value)}>
-                    <Picker.Item label="hello" value="hello" />
-                    <Picker.Item label="hell" value="hello1" />
+        
+                    {data.map(Element => (
+                      <Picker.Item key={Element.id} label={Element.label} value={Element.value} />
+                    ))}
                   </Picker>
                 </Text>
               </TouchableOpacity>
@@ -161,6 +163,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 50,
     color: 'red',
+    backgroundColor:'white',
   },
 });
 export default FrequencySetting;
