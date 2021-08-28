@@ -53,7 +53,7 @@ const FrequencySetting = () => {
   const [selected, setSelected] = useState('h');
 
   const data = [
-    {label: '30min', value: '30min'},
+    {id: 1,label: '30min', value: '30min'},
     {label: '1h:00', value: '1h:00'},
     {label: '1h:30', value: '1h:30'},
     {label: '2h:00', value: '2h:00'},
@@ -116,8 +116,10 @@ const FrequencySetting = () => {
                     mode={'dropdown'}
                     style={styles.picker}
                     onValueChange={value => setSelected(value)}>
-                    <Picker.Item label="hello" value="hello" />
                     <Picker.Item label="hell" value="hello1" />
+                    {data.map(el => (
+                      <Picker.Item key={el.id} label={el.label} value={el.value} />
+                    ))}
                   </Picker>
                 </Text>
               </TouchableOpacity>
