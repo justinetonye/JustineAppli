@@ -18,7 +18,7 @@ async function pingFunction() {
      * @returns
      * @memberof Ping
      */
-    const ms = await Ping.start('8.8.8.8', {timeout: 1000});
+    const ms = await Ping.start('8.8.8.8', {timeout: 50000});
     console.log(`Time in ms : ${ms}`);
   } catch (error) {
     console.log('special code', error.code, error.message);
@@ -40,7 +40,11 @@ async function pingFunction() {
 }
 
 const App = () => {
-  pingFunction();
+  
+  for (let index = 0; index < 5; index++) {
+    pingFunction();
+    
+  }
 
   return (
     <NavigationContainer>
