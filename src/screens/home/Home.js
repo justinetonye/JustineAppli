@@ -1,5 +1,4 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import StartButton from '../../components/buttons/StartButton';
 import HomeLayout from './HomeLayout';
 

@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 
 const HomeLayout = ({children}) => {
+  const [operator, setOperator] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    DeviceInfo.getCarrier().then(carrier => {});
+  }, []);
+
+  console.log(operator);
+
   return (
     <View style={styles.layout}>
-      <Text style={styles.text}> CAMTEL </Text>
+      <Text style={styles.text}> {operator} </Text>
       {children}
     </View>
   );
