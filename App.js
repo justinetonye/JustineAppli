@@ -4,6 +4,8 @@ import {View, Text} from 'react-native';
 import Ping from 'react-native-ping';
 import {NavigationContainer} from '@react-navigation/native';
 import {DrawerNavigator} from './src/navigation/DrawerNavigator';
+import { useEffect, useState } from 'react';
+//import AsyncStorage from '@react-native-community/async-storage'
 
 async function pingFunction() {
   try {
@@ -41,16 +43,38 @@ async function pingFunction() {
 
 const App = () => {
   
-  for (let index = 0; index < 5; index++) {
+  for (let index = 0; index < 3; index++) {
     pingFunction();
     
   }
 
+ /* const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  console.log(data);
+ 
+  const fetchIpLocation =()=> {
+    fetch('https://ipapi.co/json/')
+    .then((response) => response.json())
+    .then((json) => setData(json))
+    .catch((error) => console.error(error))
+    .finally(() => setLoading(false));
+}
+
+
+    useEffect(() => { 
+    fetchIpLocation()
+  });*/
+
   return (
+  
     <NavigationContainer>
       <DrawerNavigator />
     </NavigationContainer>
   );
+
+ 
+  
+             
 };
 
 export default App;
