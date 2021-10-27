@@ -1,20 +1,16 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-//import { useState } from 'react/cjs/react.development';
-import { useState, useEffect } from 'react';
+import DeviceInfo from 'react-native-device-info';
 
 const HomeLayout = ({children}) => {
+  const [operator, setOperator] = useState();
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    DeviceInfo.getCarrier().then(carrier => {});
+  }, []);
 
-const [operator, setOperator] = useState();
-const [isLoading, setIsLoading] = useState(true);
-console.log(operator);
-useEffect(() => {
-  fetch('https://ipapi.co/json/')
-    .then((response) => response.json())
-    .then((data) => setOperator(data.org))
-
-}, []);
+  console.log(operator);
 
   return (
     <View style={styles.layout}>
