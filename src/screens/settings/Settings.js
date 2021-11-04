@@ -6,8 +6,6 @@ import Layout from '../../components/layout/Layout';
 import Realm from 'realm';
 
 const Settings = ({navigation}) => {
-  let enabledSettingValue;
-
   // Declaring the state of the toggle button
   const [isEnabled, setIsEnabled] = useState();
 
