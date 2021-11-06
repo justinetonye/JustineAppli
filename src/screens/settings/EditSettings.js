@@ -12,7 +12,7 @@ const EditSettings = ({navigation}) => {
 
   // initialize the data structure (Schema)
   const enabledSettingsSchema = {
-    name: 'EnabledSettings',
+    name: 'TypeMeasuresChoice',
     properties: {
       _id: 'int',
       value: 'bool',
@@ -35,7 +35,7 @@ const EditSettings = ({navigation}) => {
       let settingsValue;
 
       settingsValue = realm.create(
-        'EnabledSettings',
+        'TypeMeasuresChoice',
         {_id: 1, value: isOn},
         'modified',
       );
