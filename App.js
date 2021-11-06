@@ -4,6 +4,8 @@ import {View, Text} from 'react-native';
 import Ping from 'react-native-ping';
 import {NavigationContainer} from '@react-navigation/native';
 import {DrawerNavigator} from './src/navigation/DrawerNavigator';
+import { useEffect, useState } from 'react';
+//import AsyncStorage from '@react-native-community/async-storage'
 
 async function pingFunction() {
   try {
@@ -18,7 +20,7 @@ async function pingFunction() {
      * @returns
      * @memberof Ping
      */
-    const ms = await Ping.start('8.8.8.8', {timeout: 50000});
+    const ms = await Ping.start('www.Teledeclaration-dgi.cm', {timeout: 50000});
     console.log(`Time in ms : ${ms}`);
   } catch (error) {
     console.log('special code', error.code, error.message);
@@ -44,11 +46,33 @@ const App = () => {
     pingFunction();
   }
 
+ /* const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  console.log(data);
+ 
+  const fetchIpLocation =()=> {
+    fetch('https://ipapi.co/json/')
+    .then((response) => response.json())
+    .then((json) => setData(json))
+    .catch((error) => console.error(error))
+    .finally(() => setLoading(false));
+}
+
+
+    useEffect(() => { 
+    fetchIpLocation()
+  });*/
+
   return (
+  
     <NavigationContainer>
       <DrawerNavigator />
     </NavigationContainer>
   );
+
+ 
+  
+             
 };
 
 export default App;

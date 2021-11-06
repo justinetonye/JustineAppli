@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import SettingCard from '../../components/settings/SettingCard';
 import ToggleBar from '../../components/settings/ToggleBar';
 import Layout from '../../components/layout/Layout';
+//import AsyncStorage from '@react-native-community/async-storage'
 
 import Realm from 'realm';
 
