@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import SettingCard from '../../components/settings/SettingCard';
 import ToggleBar from '../../components/settings/ToggleBar';
 import Layout from '../../components/layout/Layout';
@@ -55,10 +56,25 @@ const Settings = ({navigation}) => {
 
   return (
     <Layout>
-      <ToggleBar isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
+      <View style={styles.container}>
+        <Text style={styles.title}>Mésures automatiques</Text>
+        <ToggleBar isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
+      </View>
       {isEnabled ? <SettingCard navigation={navigation} /> : null}
     </Layout>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+});
 
 export default Settings;

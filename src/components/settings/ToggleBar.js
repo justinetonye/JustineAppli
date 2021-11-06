@@ -3,8 +3,7 @@ import {Text, View, Switch, StyleSheet} from 'react-native';
 
 const ToggleBar = ({isEnabled, setIsEnabled}) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Mésures automatiques</Text>
+    <View>
       <Switch
         trackColor={{false: '#767577', true: 'red'}}
         thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
@@ -15,19 +14,5 @@ const ToggleBar = ({isEnabled, setIsEnabled}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 30,
-    marginBottom: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
 
 export default ToggleBar;
