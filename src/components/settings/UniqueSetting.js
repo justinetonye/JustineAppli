@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import PrimaryButton from '../buttons/PrimaryButton';
 import CardLayout from '../card/CardLayout';
 import CardItem from './CardItem';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Realm from 'realm';
 
 const UniqueSetting = () => {
   /* Date de debut settings */
@@ -72,6 +73,56 @@ const UniqueSetting = () => {
 
   console.log('heure de prise ' + heureDePrise);
 
+  /* Persisting data in local storage */
+
+  // initialize the data structure (Schema)
+  const UniqueSettingsSchema = {
+    name: 'UniqueSettingsDates',
+    properties: {
+      _id: 'int',
+      startDate: 'date',
+      endDate: 'date',
+      time: 'date',
+    },
+    primaryKey: '_id',
+  };
+
+  // Creating an async function for the update
+
+  async function launch() {
+    // Opening the realm db
+    const realm = await Realm.open({
+      path: 'myrealm',
+      schema: [UniqueSettingsSchema],
+    });
+
+    // Updating the property
+
+    realm.write(() => {
+      let settingsValue;
+
+      settingsValue = realm.create(
+        'UniqueSettingsDates',
+        {_id: 1, startDate: dateDebut, endDate: dateDeFin, time: heureDePrise},
+        'modified',
+      );
+      setDateDebut(settingsValue.startDate);
+      setDateDebut(settingsValue.endDate);
+      setDateDebut(settingsValue.heureDePrise);
+    });
+
+    // Remember to close the realm
+    realm.close();
+  }
+
+  useEffect(() => {
+    launch().catch(error => {
+      console.log('There is an error ' + error);
+    });
+  });
+
+  /* ---------------------------------------*/
+
   return (
     <View>
       <CardLayout>
@@ -83,7 +134,9 @@ const UniqueSetting = () => {
               <TouchableOpacity onPress={showDatepickerDD}>
                 <Text style={styles.textAction}>
                   {dateDebut
-                    ? ` ${dateDebut.getDate()} - ${dateDebut.getMonth () +1} - ${dateDebut.getFullYear()}`
+                    ? ` ${dateDebut.getDate()} - ${
+                        dateDebut.getMonth() + 1
+                      } - ${dateDebut.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
@@ -109,7 +162,9 @@ const UniqueSetting = () => {
               <TouchableOpacity onPress={showDatepickerDF}>
                 <Text style={styles.textAction}>
                   {dateDeFin
-                    ? ` ${dateDeFin.getDate()} - ${dateDeFin.getMonth() +1} - ${dateDeFin.getFullYear()}`
+                    ? ` ${dateDeFin.getDate()} - ${
+                        dateDeFin.getMonth() + 1
+                      } - ${dateDeFin.getFullYear()}`
                     : 'choisir'}
                 </Text>
               </TouchableOpacity>
@@ -156,29 +211,28 @@ const UniqueSetting = () => {
           />
         )}
       </CardLayout>
-        
+
       {/* Save button */}
       <View style={styles.saveButton}>
         <PrimaryButton title="Sauvegarder" />
       </View>
     </View>
   );
-  }
+};
 
+const styles = StyleSheet.create({
+  textAction: {
+    color: 'red',
+  },
+  dateModal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  saveButton: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+});
 
-  const styles = StyleSheet.create({
-    textAction: {
-      color: 'red',
-    },
-    dateModal: {
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    saveButton: {
-      marginTop: 20,
-      flexDirection: 'row',
-      justifyContent: 'center',
-    },
-  });
-
-  export default UniqueSetting;
+export default UniqueSetting;
